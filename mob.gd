@@ -1,7 +1,12 @@
 extends Area2D
 signal hit
 
-@export var speed = 5
+@export var spd = 5
+@export var max_hp = 100
+@export var hp = max_hp
+@export var dmg = 10
+@export var atk_spd = 2
+
 var screen_size
 
 func _ready():
@@ -9,10 +14,4 @@ func _ready():
 
 func _process(delta):
     $AnimatedSprite2D.play()
-    position += Vector2(1, 1) * speed * delta
-    # position = position.clamp(Vector2.ZERO, screen_size)
-
-func start(pos):
-    position = pos
-    show()
-    $CollisionShape2D.disabled = false
+    position += Vector2(1, 1) * spd * delta
