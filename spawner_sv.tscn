@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq853qh86cc8x"]
+[gd_scene load_steps=8 format=3 uid="uid://dq853qh86cc8x"]
 
 [ext_resource type="Script" path="res://spawner_sv.gd" id="1_bey61"]
 [ext_resource type="PackedScene" uid="uid://cpmmompcsfyr5" path="res://mob.tscn" id="2_h0d7g"]
@@ -34,7 +34,17 @@ atk_cooldown_ms = 3000
 dmg_recover_ms = 3000
 atk_range = 100
 
+[sub_resource type="Resource" id="Resource_387eq"]
+script = ExtResource("3_k8ye5")
+move_spd = 15
+max_hp = 100
+hp = null
+dmg = 10
+atk_cooldown_ms = 3000
+dmg_recover_ms = 3000
+atk_range = 100
+
 [node name="SpawnerSv" type="Node"]
 script = ExtResource("1_bey61")
 spawned_scene = ExtResource("2_h0d7g")
-spawned_rnd_stats = Array[ExtResource("3_k8ye5")]([SubResource("Resource_fvd0n"), SubResource("Resource_80sny"), SubResource("Resource_t16qw")])
+spawned_rnd_stats = Array[ExtResource("3_k8ye5")]([SubResource("Resource_fvd0n"), SubResource("Resource_80sny"), SubResource("Resource_t16qw"), SubResource("Resource_387eq")])

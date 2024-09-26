@@ -6,6 +6,3 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_on60r")
 mob = ExtResource("2_uu2e0")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(441, 361)

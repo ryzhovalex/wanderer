@@ -1,10 +1,11 @@
-extends Node
+extends Sv
 
 # How often to call spawn instruction
 @export var period_ms: float = 1000
 @export var spawned_scene: PackedScene
 @export var spawned_rnd_stats: Array[MobStat]
 
+const SPAWN_X_OFFSET_FROM_VISIBLE_RECT_CENTER: int = 100
 var last_spawned_ms: float = 0
 
 func _process(_delta):
@@ -18,13 +19,10 @@ func _process(_delta):
         var chosen: Mob = spawned_scene.instantiate()
         chosen.stat = chosen_stat
 
-        var visible_size := get_viewport().get_visible_rect().size
-        var rnd_gen := RandomNumberGenerator.new()
-        var rnd_x := rnd_gen.randf_range(0, visible_size.x)
-        var rnd_y := rnd_gen.randf_range(0, visible_size.y)
-        var final_pos := Vector2(rnd_x, rnd_y)
-
-        chosen.position = final_pos
+        var visible_rect_center := get_viewport().get_visible_rect().get_center()
+        var final_pos_x := visible_rect_center.x + SPAWN_X_OFFSET_FROM_VISIBLE_RECT_CENTER
+        var final_pos_y := GroundSv.BASE_Y
+        chosen.position = Vector2(final_pos_x, final_pos_y)
 
         var parent_node := get_parent()
         assert(parent_node != null)
