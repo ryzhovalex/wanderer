@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://clb4bgf7qb22k"]
+[gd_scene load_steps=3 format=3 uid="uid://clb4bgf7qb22k"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_on60r"]
 [ext_resource type="PackedScene" uid="uid://cpmmompcsfyr5" path="res://mob.tscn" id="2_uu2e0"]
-[ext_resource type="PackedScene" uid="uid://dphw8opdo33i7" path="res://spawner.tscn" id="3_saad8"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_on60r")
@@ -10,7 +9,3 @@ mob = ExtResource("2_uu2e0")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(441, 361)
-
-[node name="Spawner" parent="." instance=ExtResource("3_saad8")]
-position = Vector2(253, 110)
-spawned = Array[PackedScene]([ExtResource("2_uu2e0")])

@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" path="res://distance_sv.gd" id="1_5uplh"]
 
-[node name="DistanceSv" type="Node2D"]
+[node name="DistanceSv" type="Node"]
 script = ExtResource("1_5uplh")
 test = -425

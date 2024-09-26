@@ -1,8 +1,9 @@
-extends Node2D
+extends Node
 
 # How often to call spawn instruction
 @export var period_ms: float = 1000
-@export var spawned: Array[MobStat]
+@export var spawned_scene: PackedScene
+@export var spawned_rnd_stats: Array[MobStat]
 
 var last_spawned_ms: float = 0
 
@@ -10,18 +11,18 @@ func _process(_delta):
     var current_ms := Time.get_ticks_msec()
     if current_ms - last_spawned_ms > period_ms:
         last_spawned_ms = current_ms
-        var chosen_stat: MobStat = spawned.pick_random()
+        var chosen_stat: MobStat = spawned_rnd_stats.pick_random()
         if chosen_stat == null:
-            printerr("No content in `spawned` array")
+            printerr("No content in `spawned_rnd_stats` array")
             return
-        var chosen: Mob = Mob.new().instantiate()
+        var chosen: Mob = spawned_scene.instantiate()
         chosen.stat = chosen_stat
 
         var visible_size := get_viewport().get_visible_rect().size
-        var rand_gen := RandomNumberGenerator.new()
-        var rand_x := rand_gen.randf_range(0, visible_size.x)
-        var rand_y := rand_gen.randf_range(0, visible_size.y)
-        var final_pos := Vector2(rand_x, rand_y)
+        var rnd_gen := RandomNumberGenerator.new()
+        var rnd_x := rnd_gen.randf_range(0, visible_size.x)
+        var rnd_y := rnd_gen.randf_range(0, visible_size.y)
+        var final_pos := Vector2(rnd_x, rnd_y)
 
         chosen.position = final_pos
 
