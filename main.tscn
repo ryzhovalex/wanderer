@@ -13,4 +13,4 @@ position = Vector2(441, 361)
 
 [node name="Spawner" parent="." instance=ExtResource("3_saad8")]
 position = Vector2(253, 110)
-tester = ExtResource("2_uu2e0")
+spawned = Array[PackedScene]([ExtResource("2_uu2e0")])

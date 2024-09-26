@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="wanderer"
+config/name="will_to_survive"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DistanceSv="*res://distance_sv.tscn"
 
 [display]
 
