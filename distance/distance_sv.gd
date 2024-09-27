@@ -1,3 +1,3 @@
 extends Sv
 
-@export var test: int = 0
+var covered_distance: int = 0

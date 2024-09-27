@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccg3ffbgg408"]
-
-[ext_resource type="Script" path="res://distance_sv.gd" id="1_5uplh"]
-
-[node name="DistanceSv" type="Node"]
-script = ExtResource("1_5uplh")
-test = -425
