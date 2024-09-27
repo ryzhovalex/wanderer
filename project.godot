@@ -21,6 +21,7 @@ DistanceSv="*res://distance/distance_sv.tscn"
 GroundSv="*res://ground/ground_sv.tscn"
 SpawnerSv="*res://spawner/spawner_sv.tscn"
 PlayerSv="*res://player/player_sv.tscn"
+core="*res://common/core.gd"
 
 [display]
 

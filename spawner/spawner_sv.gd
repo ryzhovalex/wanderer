@@ -28,6 +28,6 @@ func _process(_delta):
         var final_pos_y := GroundSv.base_y
         chosen.position = Vector2(final_pos_x, final_pos_y)
 
-        var parent_node := get_parent()
+        var parent_node := $"/root/Main"
         assert(parent_node != null)
         parent_node.add_child(chosen)
