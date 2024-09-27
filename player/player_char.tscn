@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://bsg10sq6rfv1l"]
+[gd_scene load_steps=5 format=3 uid="uid://bsg10sq6rfv1l"]
+
+[ext_resource type="Script" path="res://player/player_char.gd" id="1_w0h5i"]
+[ext_resource type="Texture2D" uid="uid://dtihk0s6m578g" path="res://art/playerGrey_up1.png" id="2_awkd7"]
+[ext_resource type="Texture2D" uid="uid://o6xd7oaowwoi" path="res://art/playerGrey_up2.png" id="3_arj00"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cw4q3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_awkd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_arj00")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="PlayerChar" type="Node2D"]
+script = ExtResource("1_w0h5i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -69)
+sprite_frames = SubResource("SpriteFrames_cw4q3")
+animation = &"idle"

@@ -2,7 +2,7 @@ extends Area2D
 class_name Mob
 signal hit
 
-@export var stat: MobStat
+@export var stat: MobStat = MobStat.new()
 
 func _ready():
     rotation_degrees = -180
