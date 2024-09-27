@@ -5,7 +5,6 @@ extends Sv
 @export var spawned_scene: PackedScene
 @export var spawned_rnd_stats: Array[MobStat]
 
-const SPAWN_X_OFFSET_FROM_VISIBLE_RECT_CENTER: int = 100
 var last_spawned_ms: float = 0
 
 func _process(_delta):
@@ -19,8 +18,13 @@ func _process(_delta):
         var chosen: Mob = spawned_scene.instantiate()
         chosen.stat = chosen_stat
 
-        var visible_rect_center := get_viewport().get_visible_rect().get_center()
-        var final_pos_x := visible_rect_center.x + SPAWN_X_OFFSET_FROM_VISIBLE_RECT_CENTER
+        var visible_rect := get_viewport().get_visible_rect()
+        # Spawn a little bit offscreen
+        var spawn_offset_x_from_visible_rect_center: int = \
+            floor(visible_rect.size.x * 0.75)
+        var visible_rect_center := visible_rect.get_center()
+        var final_pos_x := \
+            visible_rect_center.x + spawn_offset_x_from_visible_rect_center
         var final_pos_y := GroundSv.BASE_Y
         chosen.position = Vector2(final_pos_x, final_pos_y)
 

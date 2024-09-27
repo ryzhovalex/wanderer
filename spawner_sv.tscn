@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_fvd0n"]
 script = ExtResource("3_k8ye5")
-move_spd = 1
+move_spd = 5
 max_hp = 100
 hp = null
 dmg = 10
@@ -16,7 +16,7 @@ atk_range = 100
 
 [sub_resource type="Resource" id="Resource_80sny"]
 script = ExtResource("3_k8ye5")
-move_spd = 5
+move_spd = 10
 max_hp = 100
 hp = null
 dmg = 10
@@ -26,7 +26,7 @@ atk_range = 100
 
 [sub_resource type="Resource" id="Resource_t16qw"]
 script = ExtResource("3_k8ye5")
-move_spd = 10
+move_spd = 20
 max_hp = 100
 hp = null
 dmg = 10
@@ -36,7 +36,7 @@ atk_range = 100
 
 [sub_resource type="Resource" id="Resource_387eq"]
 script = ExtResource("3_k8ye5")
-move_spd = 15
+move_spd = 40
 max_hp = 100
 hp = null
 dmg = 10
