@@ -23,6 +23,7 @@ radius = 21.0
 height = 42.0
 
 [node name="Mob" type="Area2D"]
+position = Vector2(0, 7)
 script = ExtResource("1_govqu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

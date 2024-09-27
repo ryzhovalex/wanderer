@@ -9,5 +9,5 @@ func _ready():
 
 func _process(delta):
     $AnimatedSprite2D.play()
-    # Mobs always move to the left, until something in their attack range
+    # TODO: Make mobs move towards character
     position += Vector2(-1, 0) * stat.move_spd * delta
