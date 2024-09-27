@@ -8,7 +8,7 @@ func _ready():
     position.y = GroundSv.base_y
 
 func _draw():
-    draw_line(Vector2(position.x, GroundSv.base_y), Vector2(5000, GroundSv.base_y), Color.GREEN, 1.0)
+    draw_line(Vector2(-5000, 0.0), Vector2(5000, 0.0), Color.BLACK)
 
 func _process(delta):
     position.x += delta

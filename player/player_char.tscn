@@ -22,6 +22,7 @@ animations = [{
 script = ExtResource("1_w0h5i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 50
 position = Vector2(0, -59)
 sprite_frames = SubResource("SpriteFrames_cw4q3")
 animation = &"idle"
