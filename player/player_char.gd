@@ -12,7 +12,7 @@ func _draw():
     draw_line(Vector2(-5000, 0.0), Vector2(5000, 0.0), Color.BLACK)
 
 func _process(delta):
-    position.x += delta
+    position.x += delta * 8
     if position.x < DistanceSv.player_char_starting_x:
         position.x = DistanceSv.player_char_starting_x
 

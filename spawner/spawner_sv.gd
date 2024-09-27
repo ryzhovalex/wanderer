@@ -10,7 +10,7 @@ var last_spawned_ms: float = 0
 
 func _process(_delta):
     var current_ms := Time.get_ticks_msec()
-    if current_ms - last_spawned_ms > period_ms:
+    if last_spawned_ms == 0 || current_ms - last_spawned_ms > period_ms:
         last_spawned_ms = current_ms
         var chosen_stat: MobStat = spawned_rnd_stats.pick_random()
         if chosen_stat == null:
