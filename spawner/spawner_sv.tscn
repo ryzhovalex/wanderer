@@ -12,6 +12,7 @@ hp = 100
 external_dmg_recover_ms = 3000
 atk_dmg = 10
 atk_range = 130
+closest_range = 50
 atk_cooldown_ms = 3000
 
 [node name="SpawnerSv" type="Node"]
