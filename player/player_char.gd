@@ -15,3 +15,7 @@ func _process(delta):
     position.x += delta
     if position.x < DistanceSv.player_char_starting_x:
         position.x = DistanceSv.player_char_starting_x
+
+func recv_dmg(dmg: int):
+    # TODO: Implement
+    print("Player character is damaged for %d" % dmg)
