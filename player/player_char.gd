@@ -8,6 +8,7 @@ func _ready():
     position.y = GroundSv.base_y
 
 func _draw():
+    # Test ground-like line
     draw_line(Vector2(-5000, 0.0), Vector2(5000, 0.0), Color.BLACK)
 
 func _process(delta):
