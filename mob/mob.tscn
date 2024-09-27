@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpmmompcsfyr5"]
+[gd_scene load_steps=11 format=3 uid="uid://cpmmompcsfyr5"]
 
 [ext_resource type="Script" path="res://mob/mob.gd" id="1_govqu"]
 [ext_resource type="Texture2D" uid="uid://un66ibk0wvl4" path="res://art/enemyFlyingAlt_2.png" id="2_ex77j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ypw1g38sam8f" path="res://art/enemyWalking_2.png" id="3_0q4kx"]
 [ext_resource type="Texture2D" uid="uid://dlk4fks3w1htu" path="res://art/enemySwimming_2.png" id="3_m562h"]
 [ext_resource type="Texture2D" uid="uid://bltxww3k0o30b" path="res://art/enemyFlyingAlt_1.png" id="3_xgyjj"]
+[ext_resource type="Texture2D" uid="uid://cci20i6566xdk" path="res://art/enemy_red.png" id="4_scs0e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ge5bk"]
 animations = [{
@@ -16,6 +17,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_m562h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_scs0e")
 }],
 "loop": false,
 "name": &"atk",
@@ -65,6 +69,8 @@ position = Vector2(0, -25)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ge5bk")
 animation = &"atk"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -25)

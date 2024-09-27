@@ -4,3 +4,4 @@
 
 [node name="DistanceSv" type="Node"]
 script = ExtResource("1_5uplh")
+meter_to_pixels = 16.0

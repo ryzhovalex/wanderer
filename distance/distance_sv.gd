@@ -3,8 +3,8 @@ extends Sv
 # How many pixels in 1 meter
 @export var meter_to_pixels: float = 1
 
-@onready var player_char: PlayerChar = core.current("PlayerChar")
-@onready var covered_distance_text: Label = core.current("CoveredDistanceText")
+@onready var player_char: PlayerChar = core.find("PlayerChar")
+@onready var covered_distance_text: Label = core.find("CoveredDistanceText")
 
 var player_char_starting_x: int
 # Distance are not distracted when moved backwards, but added only once

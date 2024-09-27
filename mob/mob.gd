@@ -4,7 +4,7 @@ signal hit
 
 @export var stat: MobStat = MobStat.new()
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var _player_char: PlayerChar = core.current("PlayerChar")
+@onready var _player_char: PlayerChar = core.find("PlayerChar")
 enum State {
     Idle,
     Move,
@@ -27,7 +27,7 @@ func _process(delta):
         return
     if _is_in_atk_range():
         # Wait&Stare if atk is recharging, but player within the range
-        if _state != State.Atk && _is_atk_on_cooldown():
+        if _state != State.Atk && _state != State.Idle && _is_atk_on_cooldown():
             print_debug("idle")
             _state = State.Idle
             _sprite.play("idle")
@@ -43,7 +43,7 @@ func _die():
     _sprite.play("die")
 
 func _is_atk_on_cooldown():
-    return Time.get_ticks_msec() - last_atk_time_ms < stat.atk_cooldown_ms
+    return core.current_ms() - last_atk_time_ms < stat.atk_cooldown_ms
 
 func _on_anim_finished():
     print_debug("finish anim while %d" % _state)
@@ -51,6 +51,7 @@ func _on_anim_finished():
         State.Atk:
             if _is_in_atk_range():
                 _send_dmg()
+            _state = State.Idle
         State.Die:
             queue_free()
             return
@@ -63,14 +64,18 @@ func _is_in_atk_range() -> bool:
     return stat.atk_range >= distance
 
 func _atk():
-    if _state == State.Atk:
+    if _state == State.Atk || _is_atk_on_cooldown():
         return
     print_debug("atk")
+    # Register an attack once animation starts, not on animation finish
+    last_atk_time_ms = core.current_ms()
     _state = State.Atk
     _sprite.play("atk")
 
 func _move_toward(delta: float):
-    _sprite.play("move")
+    if _state != State.Move:
+        _state = State.Move
+        _sprite.play("move")
     # Flip sprite to face the character
     _sprite.flip_h = _player_char.position.x < position.x
     position = position.move_toward(_player_char.position, stat.move_spd * delta)
