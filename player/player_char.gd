@@ -1,9 +1,11 @@
 extends Node2D
 class_name PlayerChar
 
+@onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 func _ready():
-    $AnimatedSprite2D.speed_scale = 0.35
-    $AnimatedSprite2D.play("idle")
+    _sprite.speed_scale = 0.35
+    _sprite.play("idle")
     # Get back to the ground dude
     position.y = GroundSv.base_y
 
@@ -12,7 +14,16 @@ func _draw():
     draw_line(Vector2(-5000, 0.0), Vector2(5000, 0.0), Color.BLACK)
 
 func _process(delta):
-    position.x += delta * 8
+    var dir = 0
+    if Input.is_key_pressed(KEY_LEFT):
+        dir = -1
+    elif Input.is_key_pressed(KEY_RIGHT):
+        dir = 1
+    if dir == 0:
+        _sprite.play("idle")
+    else:
+        _sprite.play("move")
+    position.x += delta * 100 * dir
     if position.x < DistanceSv.player_char_starting_x:
         position.x = DistanceSv.player_char_starting_x
 

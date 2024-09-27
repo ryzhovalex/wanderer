@@ -1,20 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsg10sq6rfv1l"]
+[gd_scene load_steps=6 format=3 uid="uid://bsg10sq6rfv1l"]
 
 [ext_resource type="Script" path="res://player/player_char.gd" id="1_w0h5i"]
 [ext_resource type="Texture2D" uid="uid://dtihk0s6m578g" path="res://art/playerGrey_up1.png" id="2_awkd7"]
-[ext_resource type="Texture2D" uid="uid://o6xd7oaowwoi" path="res://art/playerGrey_up2.png" id="3_arj00"]
+[ext_resource type="Texture2D" uid="uid://jpnpnocs8k3g" path="res://art/playerGrey_walk1.png" id="3_agh33"]
+[ext_resource type="Texture2D" uid="uid://dakcj60nhnfaq" path="res://art/playerGrey_walk2.png" id="4_0nd8e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cw4q3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_awkd7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_arj00")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_agh33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0nd8e")
+}],
+"loop": true,
+"name": &"move",
 "speed": 5.0
 }]
 
