@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlfoseh1jfevv"]
+[gd_scene load_steps=8 format=3 uid="uid://dq853qh86cc8x"]
 
 [ext_resource type="Script" path="res://spawner_sv.gd" id="1_bey61"]
 [ext_resource type="PackedScene" uid="uid://cpmmompcsfyr5" path="res://mob.tscn" id="2_h0d7g"]

@@ -17,9 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DistanceSv="*res://distance_sv.tscn"
 SpawnerSv="*res://spawner_sv.tscn"
-GroundSv="*res://ground_sv.gd"
+DistanceSv="*res://distance_sv.tscn"
 
 [display]
 
