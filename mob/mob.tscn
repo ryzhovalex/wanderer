@@ -1,13 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpmmompcsfyr5"]
+[gd_scene load_steps=10 format=3 uid="uid://cpmmompcsfyr5"]
 
 [ext_resource type="Script" path="res://mob/mob.gd" id="1_govqu"]
 [ext_resource type="Texture2D" uid="uid://un66ibk0wvl4" path="res://art/enemyFlyingAlt_2.png" id="2_ex77j"]
+[ext_resource type="Texture2D" uid="uid://b07ta42vo5446" path="res://art/enemySwimming_1.png" id="2_jputt"]
 [ext_resource type="Texture2D" uid="uid://j4jv633lbm21" path="res://art/enemyWalking_1.png" id="2_ll14x"]
 [ext_resource type="Texture2D" uid="uid://ypw1g38sam8f" path="res://art/enemyWalking_2.png" id="3_0q4kx"]
+[ext_resource type="Texture2D" uid="uid://dlk4fks3w1htu" path="res://art/enemySwimming_2.png" id="3_m562h"]
 [ext_resource type="Texture2D" uid="uid://bltxww3k0o30b" path="res://art/enemyFlyingAlt_1.png" id="3_xgyjj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ge5bk"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jputt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m562h")
+}],
+"loop": true,
+"name": &"atk",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_ex77j")
@@ -43,8 +56,8 @@ script = ExtResource("1_govqu")
 position = Vector2(0, -25)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ge5bk")
-animation = &"die"
-frame_progress = 0.472393
+animation = &"atk"
+frame_progress = 0.560628
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -25)

@@ -60,4 +60,5 @@ func _atk():
     _sprite.connect("animation_finished", func(): queue_free())
 
 func _move_toward(delta: float):
+    _sprite.play("move")
     position = position.move_toward(_player_char.position, stat.move_spd * delta)

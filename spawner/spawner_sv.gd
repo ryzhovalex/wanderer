@@ -4,6 +4,7 @@ extends Sv
 @export var period_ms: float = 1000
 @export var spawned_scene: PackedScene
 @export var spawned_rnd_stats: Array[MobStat]
+@export var spawn_offset_x_mul: float = 0.75
 
 var last_spawned_ms: float = 0
 
@@ -21,7 +22,7 @@ func _process(_delta):
         var visible_rect := get_viewport().get_visible_rect()
         # Spawn a little bit offscreen
         var spawn_offset_x_from_visible_rect_center: int = \
-            floor(visible_rect.size.x * 0.75)
+            floor(visible_rect.size.x * spawn_offset_x_mul)
         var visible_rect_center := visible_rect.get_center()
         var final_pos_x := \
             visible_rect_center.x + spawn_offset_x_from_visible_rect_center
