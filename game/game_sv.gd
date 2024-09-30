@@ -1,7 +1,8 @@
 extends Sv
 
 var services: Array[Sv] = [
-    DistanceSv
+    DistanceSv,
+    SpawnerSv
 ]
 
 func _ready():

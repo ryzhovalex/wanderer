@@ -1,17 +1,19 @@
 extends Sv
 
 # How often to call spawn instruction
-@export var period: float = 1000
+@export var period: int = 1000
 @export var spawned_scene: PackedScene
 @export var spawned_rnd_stats: Array[MobStat]
 @export var spawn_offset_x_mul: float = 0.75
 
-var last_spawned: float = 0
+var last_spawned: int = 0
+
+func init():
+    last_spawned = 0
 
 func _process(_delta):
-    var current_time := Time.get_ticks_msec()
-    if last_spawned == 0 || current_time - last_spawned > period:
-        last_spawned = current_time
+    if core.is_cooldown(last_spawned, period):
+        last_spawned = core.time()
         var chosen_stat: MobStat = spawned_rnd_stats.pick_random()
         if chosen_stat == null:
             printerr("No content in `spawned_rnd_stats` array")
