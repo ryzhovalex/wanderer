@@ -59,7 +59,7 @@ func _die():
     _sprite.play("die")
 
 func _is_atk_on_cooldown():
-    return core.engine_time() - last_atk_time < stat.atk_cooldown
+    return core.time() - last_atk_time < stat.atk_cooldown
 
 func _on_anim_finished():
     match _state:
@@ -82,7 +82,7 @@ func _atk():
     if _state == State.StartedAtk || _is_atk_on_cooldown():
         return
     # Register an attack once animation starts, not on animation finish
-    last_atk_time = core.engine_time()
+    last_atk_time = core.time()
     _state = State.StartedAtk
     _sprite.play("atk")
 

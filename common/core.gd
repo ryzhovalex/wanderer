@@ -4,5 +4,13 @@ extends Node
 func find(t: String = ".") -> Node:
     return get_tree().get_current_scene().get_node(t)
 
-func engine_time() -> int:
+func time() -> int:
     return Time.get_ticks_msec()
+
+func is_cooldown(
+    last: int, cooldown: int, unlock_starters: bool = true
+) -> bool:
+    # By default make cooldowns unlocked at the start of the engine
+    if unlock_starters && last == 0:
+        return false
+    return time() - last <= cooldown

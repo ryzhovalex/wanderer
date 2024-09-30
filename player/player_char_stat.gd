@@ -9,6 +9,7 @@ class_name PlayerCharStat
 
 @export var main_atk_dmg: int = 50
 @export var main_atk_range: int = 100
+@export var main_atk_cooldown: int = 0
 @export var main_atk_crit_chance: int = 20
 @export var main_atk_crit_mul: int = 2
 @export var main_atk_aoe_range: int = 20
