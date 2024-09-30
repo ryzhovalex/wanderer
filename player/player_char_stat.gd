@@ -1,11 +1,12 @@
 extends Stat
 class_name PlayerCharStat
 
-@export var max_hp: int = 500
-@export var hp: int = 500
+@export var max_hp: float = 500
+@export var hp: float = 500
+@export var hp_dmg_per_sec: float = 1
 
 @export var move_spd: float = 30
-@export var move_spd_reduce_per_hp_percent: float = 0.2
+@export var move_spd_reduce_per_missing_hp_percent: float = 0.002
 
 @export var main_atk_dmg: int = 50
 # Range within the closest enemy will be chosen to hit. Additional enemies will

@@ -18,6 +18,11 @@ var main_atk_last_time: int = 0
 var circle_atk_last_time: int = 0
 var rage_last_time: int = 0
 
+var last_dmg_per_sec_time: int = 0
+
+@onready var hp_text: Label = core.find("HpText")
+@onready var move_spd_text: Label = core.find("MoveSpdText")
+
 func _ready():
     _sprite.speed_scale = 0.35
     _sprite.play("idle")
@@ -36,20 +41,36 @@ func _draw():
     # Test ground-like line
     draw_line(Vector2(-100000, 0.0), Vector2(100000, 0.0), Color.BLACK)
 
+func _dmg_per_sec():
+    # We don't want this damage to be applied before the first second
+    if !core.is_cooldown(last_dmg_per_sec_time, 1000, false):
+        last_dmg_per_sec_time = core.time()
+        stat.hp -= stat.hp_dmg_per_sec
+
+func _display():
+    hp_text.text = "%d/%d HP" % [stat.hp, stat.max_hp]
+    move_spd_text.text = "%d/%d Speed" % [real_move_spd, stat.move_spd]
+
 func _process(delta):
+    _dmg_per_sec()
     _maybe_die()
+    _set_move_spd_by_hp()
+    _display()
     if state == State.Die:
         return
-    _set_move_spd_by_hp()
     _maybe_move(delta)
     # Atk doesn't interrupt move
     _maybe_atk(delta)
 
 func _set_move_spd_by_hp():
     var hp_percent = core.percent(stat.hp, stat.max_hp)
-    var missing_hp_percent = 100 - hp_percent
-    var reduce = stat.move_spd_reduce_per_hp_percent
-    real_move_spd = floor(stat.move_spd - (missing_hp_percent * reduce))
+    var missing_hp_percent = 1 - hp_percent
+    var reduce = stat.move_spd_reduce_per_missing_hp_percent
+    var move_spd_reduce_percent = missing_hp_percent * 100 * reduce
+    print(move_spd_reduce_percent)
+    real_move_spd = floor(
+        stat.move_spd - (stat.move_spd * move_spd_reduce_percent)
+    )
 
 func _maybe_atk(_delta: float):
     if state == State.MainAtk || state == State.CircleAtk:
@@ -127,7 +148,6 @@ func _dmg_mobs_in_range(
                     || mob.position.x < closest_mob.position.x:
                 closest_mob = mob
 
-    print(all_mobs, " ", closest_mob,  in_range_mobs)
     if closest_mob == null:
         return
     closest_mob.recv_dmg(dmg_closest)

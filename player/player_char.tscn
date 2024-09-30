@@ -12,10 +12,11 @@
 
 [sub_resource type="Resource" id="Resource_eoydj"]
 script = ExtResource("2_ygryo")
-max_hp = 500
-hp = 500
+max_hp = 500.0
+hp = 500.0
+hp_dmg_per_sec = 1.0
 move_spd = 100.0
-move_spd_reduce_per_hp_percent = 0.2
+move_spd_reduce_per_missing_hp_percent = 0.002
 main_atk_dmg = 50
 main_atk_range = 250.0
 main_atk_cooldown = 0
