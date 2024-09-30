@@ -7,12 +7,6 @@ func get_current_scene() -> Node:
 func find(t: String = ".") -> Node:
     return get_tree().get_current_scene().get_node(t)
 
-func find_by_class(node: Node, clsname: String, r: Array):
-    if node.is_class(clsname):
-        r.push_back(node)
-    for child in node.get_children():
-        find_by_class(child, clsname, r)
-
 func time() -> int:
     return Time.get_ticks_msec()
 
@@ -32,3 +26,6 @@ func percent(current_val: float, max_val: float) -> float:
 
 func get_mouse_pos() -> Vector2:
     return get_viewport().get_mouse_position()
+
+func group_members(group: StringName) -> Array[Node]:
+    return get_tree().get_nodes_in_group(group)

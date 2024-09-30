@@ -1,3 +1,3 @@
 extends Sv
 
-@export var base_y: int = 500
+@export var base_y: float = 500

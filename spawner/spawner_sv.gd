@@ -27,7 +27,7 @@ func _process(_delta):
         var visible_rect_center := visible_rect.get_center()
         var final_pos_x := \
             visible_rect_center.x + spawn_offset_x_from_visible_rect_center
-        var final_pos_y := GroundSv.base_y
+        var final_pos_y: float = GroundSv.base_y
         chosen.position = Vector2(final_pos_x, final_pos_y)
 
         var parent_node := core.find()

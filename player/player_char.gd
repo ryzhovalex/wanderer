@@ -12,7 +12,7 @@ enum State {
     CircleAtk,
     Die
 }
-var real_move_spd: int = stat.move_spd
+var real_move_spd: float = stat.move_spd
 var state: State = State.Std
 var main_atk_last_time: int = 0
 var circle_atk_last_time: int = 0
@@ -67,8 +67,7 @@ func _maybe_atk(_delta: float):
         var dot = forward_dir.dot(mouse_dir)
         _sprite.flip_h = dot < 0
 
-        var mobs: Array[Mob] = []
-        core.find_by_class(core.get_current_scene(), "Mob", mobs)
+        var mobs = core.group_members("mobs")
 
         # Instead raycasting, check what's in close proximity by just
         # coordinates
@@ -113,6 +112,8 @@ func _dmg_mobs_in_range(
                     || mob.position.x < closest_mob.position.x:
                 closest_mob = mob
 
+    if closest_mob == null:
+        return
     closest_mob.recv_dmg(dmg_closest)
     for mob in in_range_mobs:
         mob.recv_dmg(dmg_other)
