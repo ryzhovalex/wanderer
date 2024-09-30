@@ -1,7 +1,7 @@
 extends Stat
 class_name MobStat
 
-@export var move_spd: float = 5
+@export var move_spd: float = 20
 
 @export var max_hp: int = 100
 @export var hp: int = 100

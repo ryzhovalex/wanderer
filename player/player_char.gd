@@ -42,20 +42,24 @@ func _process(delta):
     _maybe_move(delta)
     # Atk doesn't interrupt move
     _maybe_atk(delta)
+    _reduce_move_spd_by_hp()
+
+func _reduce_move_spd_by_hp():
+    core.percent(stat.hp, stat.max_hp)
 
 func _maybe_atk(_delta: float):
     if state == State.MainAtk || state == State.CircleAtk:
         return
-    if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-        if core.is_cooldown(main_atk_last_time, stat.main_atk_cooldown):
-            return
+    if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) \
+            && !core.is_cooldown(main_atk_last_time, stat.main_atk_cooldown):
         state = State.MainAtk
         main_atk_last_time = core.time()
         _sprite.play("main_atk")
         return
-    if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-        if core.is_cooldown(circle_atk_last_time, stat.circle_atk_cooldown):
-            return
+    if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) \
+            && !core.is_cooldown(
+                circle_atk_last_time, stat.circle_atk_cooldown
+            ):
         state = State.CircleAtk
         circle_atk_last_time = core.time()
         _sprite.play("circle_atk")
@@ -71,7 +75,7 @@ func _maybe_move(delta: float):
             _sprite.play("idle")
         else:
             _sprite.play("move")
-    position.x += delta * 100 * dir
+    position.x += delta * stat.move_spd * dir
     if position.x < DistanceSv.player_char_starting_x:
         position.x = DistanceSv.player_char_starting_x
 

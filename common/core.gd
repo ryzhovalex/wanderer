@@ -14,3 +14,10 @@ func is_cooldown(
     if unlock_starters && last == 0:
         return false
     return time() - last <= cooldown
+
+func percent(current_val: int, max_val: int) -> int:
+    var f: float = float(current_val) / max_val
+    f *= 100
+    if f > 100:
+        f = 100
+    return floor(f)

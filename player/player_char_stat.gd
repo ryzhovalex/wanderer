@@ -4,7 +4,7 @@ class_name PlayerCharStat
 @export var max_hp: int = 500
 @export var hp: int = 500
 
-@export var move_spd: int = 6
+@export var move_spd: int = 30
 @export var move_spd_reduce_per_hp_percent: float = 0.2
 
 @export var main_atk_dmg: int = 50
