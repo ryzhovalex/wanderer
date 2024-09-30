@@ -15,7 +15,7 @@ script = ExtResource("2_ygryo")
 max_hp = 500.0
 hp = 500.0
 hp_dmg_per_sec = 1.0
-move_spd = 100.0
+move_spd = 200.0
 move_spd_reduce_per_missing_hp_percent = 0.002
 main_atk_dmg = 50
 main_atk_range = 250.0
@@ -140,10 +140,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MoveSpdText" type="Label" parent="Camera2D"]
-offset_left = -640.0
-offset_top = -253.0
-offset_right = -429.0
-offset_bottom = -160.0
+offset_left = -605.0
+offset_top = -250.0
+offset_right = -267.0
+offset_bottom = -157.0
 text = "0/0 Speed"
 label_settings = SubResource("LabelSettings_wasq7")
 horizontal_alignment = 1
