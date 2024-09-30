@@ -14,7 +14,7 @@ func init():
 func _process(_delta):
     if !core.is_cooldown(last_spawned, period):
         last_spawned = core.time()
-        var chosen_stat: MobStat = spawned_rnd_stats.pick_random()
+        var chosen_stat: MobStat = spawned_rnd_stats.pick_random().duplicate()
         if chosen_stat == null:
             return
         var chosen: Mob = spawned_scene.instantiate()

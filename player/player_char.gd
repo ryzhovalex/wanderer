@@ -91,7 +91,7 @@ func _maybe_atk(_delta: float):
 
 func _dmg_mobs_in_range(
     pos_range: int,
-    all_mobs: Array[Mob]
+    all_mobs: Array[Node]
 ):
     var in_range_mobs: Array[Mob] = []
     var closest_mob: Mob = null
@@ -112,6 +112,7 @@ func _dmg_mobs_in_range(
                     || mob.position.x < closest_mob.position.x:
                 closest_mob = mob
 
+    print(all_mobs, " ", closest_mob,  in_range_mobs)
     if closest_mob == null:
         return
     closest_mob.recv_dmg(dmg_closest)
