@@ -26,7 +26,7 @@ var last_dmg_per_sec_time: int = 0
 @onready var cam = $Camera2D
 
 # How many pixels in 1 meter
-@export var meter_to_pixels: float = 1
+@export var meter_to_pixels: float = 64
 
 var starting_x: float
 

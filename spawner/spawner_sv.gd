@@ -4,7 +4,7 @@ extends Sv
 @export var period: int = 1000
 @export var spawned_scene: PackedScene
 @export var spawned_rnd_stats: Array[MobStat]
-@export var spawn_offset_x_mul: float = 0.75
+@export var spawn_offset_x_from_cam_edge: float = 300
 
 var last_spawned: int = 0
 
@@ -21,14 +21,8 @@ func _process(_delta):
         chosen.stat = chosen_stat
 
         var cam: Camera2D = get_tree().get_first_node_in_group("cam")
-        var visible_rect = cam.
-        print(visible_rect)
         # Spawn a little bit offscreen
-        var spawn_offset_x_from_visible_rect_center: int = \
-            floor(visible_rect.size.x * spawn_offset_x_mul)
-        var visible_rect_center := visible_rect.get_center()
-        var final_pos_x := \
-            visible_rect_center.x + spawn_offset_x_from_visible_rect_center
+        var final_pos_x: float = cam.global_position.x + (get_viewport().get_visible_rect().size.x * 0.5) + spawn_offset_x_from_cam_edge
         var final_pos_y: float = GroundSv.base_y
         chosen.position = Vector2(final_pos_x, final_pos_y)
 

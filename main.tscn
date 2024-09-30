@@ -10,4 +10,3 @@ mob = ExtResource("2_uu2e0")
 
 [node name="PlayerChar" parent="." instance=ExtResource("3_hwjfn")]
 position = Vector2(90, 500)
-meter_to_pixels = null

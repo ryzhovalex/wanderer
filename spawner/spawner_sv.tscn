@@ -20,4 +20,3 @@ script = ExtResource("1_bey61")
 period = 5000
 spawned_scene = ExtResource("2_h0d7g")
 spawned_rnd_stats = Array[ExtResource("3_k8ye5")]([SubResource("Resource_fvd0n")])
-spawn_offset_x_mul = 0.2
