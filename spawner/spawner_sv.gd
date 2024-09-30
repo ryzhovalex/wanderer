@@ -9,7 +9,6 @@ extends Sv
 var last_spawned: int = 0
 
 func init():
-    print("init ", spawned_scene)
     last_spawned = 0
 
 func _process(_delta):
