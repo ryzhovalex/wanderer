@@ -17,7 +17,7 @@ position = Vector2(90, 500)
 [node name="CoveredDistanceText" type="Label" parent="."]
 offset_right = 211.0
 offset_bottom = 93.0
-text = "354 meters"
+text = "0 meters"
 label_settings = SubResource("LabelSettings_gkr4v")
 horizontal_alignment = 1
 vertical_alignment = 1

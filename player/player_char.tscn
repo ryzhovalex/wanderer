@@ -1,12 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsg10sq6rfv1l"]
+[gd_scene load_steps=10 format=3 uid="uid://bsg10sq6rfv1l"]
 
 [ext_resource type="Script" path="res://player/player_char.gd" id="1_w0h5i"]
 [ext_resource type="Texture2D" uid="uid://dtihk0s6m578g" path="res://art/playerGrey_up1.png" id="2_awkd7"]
+[ext_resource type="Texture2D" uid="uid://c6ue75jrlfjkr" path="res://art/player_circle_atk.png" id="2_vh6ye"]
 [ext_resource type="Texture2D" uid="uid://jpnpnocs8k3g" path="res://art/playerGrey_walk1.png" id="3_agh33"]
+[ext_resource type="Texture2D" uid="uid://l834ll472hhs" path="res://art/player_die.png" id="3_u7rlv"]
 [ext_resource type="Texture2D" uid="uid://dakcj60nhnfaq" path="res://art/playerGrey_walk2.png" id="4_0nd8e"]
+[ext_resource type="Texture2D" uid="uid://b2yv2156817rc" path="res://art/player_main_atk.png" id="5_3mgdu"]
+[ext_resource type="Texture2D" uid="uid://m8y6ygb414dw" path="res://art/player_rage.png" id="8_nk251"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cw4q3"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vh6ye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vh6ye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vh6ye")
+}],
+"loop": false,
+"name": &"circle_atk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u7rlv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u7rlv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u7rlv")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_awkd7")
@@ -15,8 +47,14 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3mgdu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3mgdu")
+}],
+"loop": false,
 "name": &"main_atk",
 "speed": 5.0
 }, {
@@ -30,6 +68,17 @@ animations = [{
 "loop": true,
 "name": &"move",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_nk251")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nk251")
+}],
+"loop": false,
+"name": &"rage",
+"speed": 5.0
 }]
 
 [node name="PlayerChar" type="Node2D"]
@@ -39,4 +88,4 @@ script = ExtResource("1_w0h5i")
 z_index = 50
 position = Vector2(0, -59)
 sprite_frames = SubResource("SpriteFrames_cw4q3")
-animation = &"main_atk"
+animation = &"move"

@@ -3,14 +3,18 @@ extends Sv
 # How many pixels in 1 meter
 @export var meter_to_pixels: float = 1
 
-@onready var player_char: PlayerChar = core.find("PlayerChar")
-@onready var covered_distance_text: Label = core.find("CoveredDistanceText")
+var player_char: PlayerChar
+var covered_distance_text: Label
 
 var player_char_starting_x: int
 
-func _ready():
+func init():
+    player_char = core.find("PlayerChar")
     player_char_starting_x = floor(player_char.position.x)
-    print("Player character is starting from x %d" % player_char_starting_x)
+    covered_distance_text = core.find("CoveredDistanceText")
+
+func destroy():
+    pass
 
 func _physics_process(_delta):
     player_char.covered_distance = _process_covered_distance()
