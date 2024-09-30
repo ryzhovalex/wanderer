@@ -4,5 +4,5 @@ extends Node
 func find(t: String = ".") -> Node:
     return get_tree().get_current_scene().get_node(t)
 
-func current_ms() -> int:
+func engine_time() -> int:
     return Time.get_ticks_msec()

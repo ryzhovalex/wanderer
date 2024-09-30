@@ -9,9 +9,9 @@ extends Sv
 var last_spawned: float = 0
 
 func _process(_delta):
-    var current := Time.get_ticks_msec()
-    if last_spawned == 0 || current - last_spawned > period:
-        last_spawned = current_ms
+    var current_time := Time.get_ticks_msec()
+    if last_spawned == 0 || current_time - last_spawned > period:
+        last_spawned = current_time
         var chosen_stat: MobStat = spawned_rnd_stats.pick_random()
         if chosen_stat == null:
             printerr("No content in `spawned_rnd_stats` array")
