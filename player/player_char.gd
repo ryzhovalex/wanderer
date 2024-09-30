@@ -34,7 +34,7 @@ func _on_anim_finished():
 
 func _draw():
     # Test ground-like line
-    draw_line(Vector2(-5000, 0.0), Vector2(5000, 0.0), Color.BLACK)
+    draw_line(Vector2(-100000, 0.0), Vector2(100000, 0.0), Color.BLACK)
 
 func _process(delta):
     _maybe_die()
@@ -59,6 +59,12 @@ func _maybe_atk(_delta: float):
         state = State.MainAtk
         main_atk_last_time = core.time()
         _sprite.play("main_atk")
+        # Attack direction is determined by cursor position relative to
+        # character
+        var mouse_dir: Vector2 = (core.get_mouse_pos() - position).normalized()
+        var forward_dir = Vector2(1, 0)
+        var dot = forward_dir.dot(mouse_dir)
+        _sprite.flip_h = dot < 0
         return
     if Input.is_action_just_pressed("circle_atk") \
             && !core.is_cooldown(

@@ -1,13 +1,37 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsg10sq6rfv1l"]
+[gd_scene load_steps=12 format=3 uid="uid://bsg10sq6rfv1l"]
 
 [ext_resource type="Script" path="res://player/player_char.gd" id="1_w0h5i"]
 [ext_resource type="Texture2D" uid="uid://dtihk0s6m578g" path="res://art/playerGrey_up1.png" id="2_awkd7"]
 [ext_resource type="Texture2D" uid="uid://c6ue75jrlfjkr" path="res://art/player_circle_atk.png" id="2_vh6ye"]
+[ext_resource type="Script" path="res://player/player_char_stat.gd" id="2_ygryo"]
 [ext_resource type="Texture2D" uid="uid://jpnpnocs8k3g" path="res://art/playerGrey_walk1.png" id="3_agh33"]
 [ext_resource type="Texture2D" uid="uid://l834ll472hhs" path="res://art/player_die.png" id="3_u7rlv"]
 [ext_resource type="Texture2D" uid="uid://dakcj60nhnfaq" path="res://art/playerGrey_walk2.png" id="4_0nd8e"]
 [ext_resource type="Texture2D" uid="uid://b2yv2156817rc" path="res://art/player_main_atk.png" id="5_3mgdu"]
 [ext_resource type="Texture2D" uid="uid://m8y6ygb414dw" path="res://art/player_rage.png" id="8_nk251"]
+
+[sub_resource type="Resource" id="Resource_eoydj"]
+script = ExtResource("2_ygryo")
+max_hp = 500
+hp = 500
+move_spd = 100
+move_spd_reduce_per_hp_percent = 0.2
+main_atk_dmg = 50
+main_atk_range = 100
+main_atk_cooldown = 0
+main_atk_crit_chance = 20
+main_atk_crit_mul = 2
+main_atk_aoe_range = 20
+main_atk_aoe_dmg_reduction_percent = 80
+circle_atk_dmg = 50
+circle_atk_range = 100
+circle_atk_cooldown = 10000
+circle_atk_crit_chance = 20
+circle_atk_crit_mul = 2
+circle_atk_aoe_range = 40
+circle_atk_aoe_dmg_reduction_percent = 10
+rage_cooldown = 60000
+rage_duration = 5000
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cw4q3"]
 animations = [{
@@ -83,6 +107,7 @@ animations = [{
 
 [node name="PlayerChar" type="Node2D"]
 script = ExtResource("1_w0h5i")
+stat = SubResource("Resource_eoydj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 50

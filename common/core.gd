@@ -24,3 +24,6 @@ func percent(current_val: int, max_val: int) -> int:
     if f > 100:
         f = 100
     return floor(f)
+
+func get_mouse_pos() -> Vector2:
+    return get_viewport().get_mouse_position()
