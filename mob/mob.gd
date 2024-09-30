@@ -13,7 +13,7 @@ enum State {
 	Die
 }
 var _state := State.Idle
-var last_atk_time_ms: int = 0
+var last_atk_time: int = 0
 var is_moving_backward: bool = false
 
 func _ready():
@@ -59,7 +59,7 @@ func _die():
 	_sprite.play("die")
 
 func _is_atk_on_cooldown():
-	return core.current_ms() - last_atk_time_ms < stat.atk_cooldown_ms
+	return core.current_ms() - last_atk_time < stat.atk_cooldown_ms
 
 func _on_anim_finished():
 	match _state:
@@ -82,7 +82,7 @@ func _atk():
 	if _state == State.StartedAtk || _is_atk_on_cooldown():
 		return
 	# Register an attack once animation starts, not on animation finish
-	last_atk_time_ms = core.current_ms()
+	last_atk_time = core.current_ms()
 	_state = State.StartedAtk
 	_sprite.play("atk")
 

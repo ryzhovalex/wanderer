@@ -1,17 +1,17 @@
 extends Sv
 
 # How often to call spawn instruction
-@export var period_ms: float = 1000
+@export var period: float = 1000
 @export var spawned_scene: PackedScene
 @export var spawned_rnd_stats: Array[MobStat]
 @export var spawn_offset_x_mul: float = 0.75
 
-var last_spawned_ms: float = 0
+var last_spawned: float = 0
 
 func _process(_delta):
-    var current_ms := Time.get_ticks_msec()
-    if last_spawned_ms == 0 || current_ms - last_spawned_ms > period_ms:
-        last_spawned_ms = current_ms
+    var current := Time.get_ticks_msec()
+    if last_spawned == 0 || current - last_spawned > period:
+        last_spawned = current_ms
         var chosen_stat: MobStat = spawned_rnd_stats.pick_random()
         if chosen_stat == null:
             printerr("No content in `spawned_rnd_stats` array")

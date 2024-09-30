@@ -1,6 +1,7 @@
 extends Node2D
 class_name PlayerChar
 
+@export var stat: PlayerCharStat = PlayerCharStat.new()
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
@@ -15,9 +16,9 @@ func _draw():
 
 func _process(delta):
     var dir = 0
-    if Input.is_key_pressed(KEY_LEFT):
+    if Input.is_key_pressed(KEY_A):
         dir = -1
-    elif Input.is_key_pressed(KEY_RIGHT):
+    elif Input.is_key_pressed(KEY_D):
         dir = 1
     if dir == 0:
         _sprite.play("idle")

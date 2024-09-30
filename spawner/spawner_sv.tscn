@@ -9,15 +9,15 @@ script = ExtResource("3_k8ye5")
 move_spd = 160
 max_hp = 100
 hp = 100
-external_dmg_recover_ms = 3000
+external_dmg_recover = 3000
 atk_dmg = 10
 atk_range = 130
 closest_range = 50
-atk_cooldown_ms = 3000
+atk_cooldown = 3000
 
 [node name="SpawnerSv" type="Node"]
 script = ExtResource("1_bey61")
-period_ms = 50000.0
+period = 50000.0
 spawned_scene = ExtResource("2_h0d7g")
 spawned_rnd_stats = Array[ExtResource("3_k8ye5")]([SubResource("Resource_fvd0n")])
 spawn_offset_x_mul = 0.2

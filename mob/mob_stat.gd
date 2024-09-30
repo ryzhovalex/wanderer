@@ -1,11 +1,12 @@
 extends Stat
 class_name MobStat
 
-@export var move_spd: int = 5
+@export var move_spd: float = 5
+
 @export var max_hp: int = 100
 @export var hp: int = 100
 
-@export var external_dmg_recover_ms: int = 3000
+@export var external_dmg_recover: int = 3000
 
 @export var atk_dmg: int = 10
 @export var atk_range: int = 100
@@ -14,4 +15,4 @@ class_name MobStat
 # first possibility. If the distance is greater than this value, but less than
 # `atk_range`, the mob will idle.
 @export var closest_range: int = 50
-@export var atk_cooldown_ms: int = 3000
+@export var atk_cooldown: int = 3000
