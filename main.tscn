@@ -1,19 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://clb4bgf7qb22k"]
+[gd_scene load_steps=4 format=3 uid="uid://clb4bgf7qb22k"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_on60r"]
 [ext_resource type="PackedScene" uid="uid://cpmmompcsfyr5" path="res://mob/mob.tscn" id="2_uu2e0"]
 [ext_resource type="PackedScene" uid="uid://bsg10sq6rfv1l" path="res://player/player_char.tscn" id="3_hwjfn"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_k1hff"]
-font_size = 30
-font_color = Color(1, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_46u13"]
-font_size = 30
-font_color = Color(0.658221, 0.771418, 1, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_gkr4v"]
-font_size = 30
 
 [node name="Main" type="Node"]
 script = ExtResource("1_on60r")
@@ -21,31 +10,4 @@ mob = ExtResource("2_uu2e0")
 
 [node name="PlayerChar" parent="." instance=ExtResource("3_hwjfn")]
 position = Vector2(90, 500)
-
-[node name="HpText" type="Label" parent="."]
-offset_top = 1.0
-offset_right = 211.0
-offset_bottom = 94.0
-text = "0/0 HP"
-label_settings = SubResource("LabelSettings_k1hff")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MoveSpdText" type="Label" parent="."]
-offset_top = 105.0
-offset_right = 211.0
-offset_bottom = 198.0
-text = "0/0 Speed"
-label_settings = SubResource("LabelSettings_46u13")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CoveredDistanceText" type="Label" parent="."]
-offset_left = 231.0
-offset_top = -1.0
-offset_right = 442.0
-offset_bottom = 92.0
-text = "0 Meters"
-label_settings = SubResource("LabelSettings_gkr4v")
-horizontal_alignment = 1
-vertical_alignment = 1
+meter_to_pixels = null

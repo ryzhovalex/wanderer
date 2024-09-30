@@ -20,8 +20,27 @@ var rage_last_time: int = 0
 
 var last_dmg_per_sec_time: int = 0
 
-@onready var hp_text: Label = core.find("HpText")
-@onready var move_spd_text: Label = core.find("MoveSpdText")
+@onready var hp_text: Label = $Camera2D.get_node("HpText")
+@onready var move_spd_text: Label = $Camera2D.get_node("MoveSpdText")
+@onready var covered_distance_text = $Camera2D.get_node("CoveredDistanceText")
+
+# How many pixels in 1 meter
+@export var meter_to_pixels: float = 1
+
+var starting_x: float
+
+func _physics_process(_delta):
+    covered_distance = _process_covered_distance()
+
+func _process_covered_distance() -> int:
+    var new_covered_distance: int = \
+        floor(position.x) - starting_x
+    if new_covered_distance < covered_distance:
+        new_covered_distance = covered_distance
+    return new_covered_distance
+
+func _get_covered_distance_as_meters() -> int:
+    return floor(covered_distance / meter_to_pixels)
 
 func _ready():
     _sprite.speed_scale = 0.35
@@ -29,6 +48,7 @@ func _ready():
     # Get back to the ground dude
     position.y = GroundSv.base_y
     _sprite.connect("animation_finished", _on_anim_finished)
+    starting_x = position.x
 
 func _on_anim_finished():
     match state:
@@ -50,6 +70,8 @@ func _dmg_per_sec():
 func _display():
     hp_text.text = "%d/%d HP" % [stat.hp, stat.max_hp]
     move_spd_text.text = "%d/%d Speed" % [real_move_spd, stat.move_spd]
+    covered_distance_text.text = \
+        "%d meters" % _get_covered_distance_as_meters()
 
 func _process(delta):
     _dmg_per_sec()
@@ -67,7 +89,6 @@ func _set_move_spd_by_hp():
     var missing_hp_percent = 1 - hp_percent
     var reduce = stat.move_spd_reduce_per_missing_hp_percent
     var move_spd_reduce_percent = missing_hp_percent * 100 * reduce
-    print(move_spd_reduce_percent)
     real_move_spd = floor(
         stat.move_spd - (stat.move_spd * move_spd_reduce_percent)
     )
@@ -170,8 +191,8 @@ func _maybe_move(delta: float):
         else:
             _sprite.play("move")
     position.x += delta * real_move_spd * dir
-    if position.x < DistanceSv.player_char_starting_x:
-        position.x = DistanceSv.player_char_starting_x
+    if position.x < starting_x:
+        position.x = starting_x
 
 func _maybe_die():
     if stat.hp <= 0:

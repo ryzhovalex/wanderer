@@ -1,7 +1,6 @@
 extends Sv
 
 var services: Array[Sv] = [
-    DistanceSv,
     SpawnerSv
 ]
 

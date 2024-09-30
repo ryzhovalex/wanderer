@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://mo5y3po2w33l"]
-
-[ext_resource type="Script" path="res://distance/distance_sv.gd" id="1_5uplh"]
-
-[node name="DistanceSv" type="Node"]
-script = ExtResource("1_5uplh")
-meter_to_pixels = 16.0

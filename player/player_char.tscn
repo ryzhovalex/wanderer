@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsg10sq6rfv1l"]
+[gd_scene load_steps=15 format=3 uid="uid://bsg10sq6rfv1l"]
 
 [ext_resource type="Script" path="res://player/player_char.gd" id="1_w0h5i"]
 [ext_resource type="Texture2D" uid="uid://dtihk0s6m578g" path="res://art/playerGrey_up1.png" id="2_awkd7"]
@@ -104,12 +104,57 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_dvowd"]
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wasq7"]
+font_size = 30
+font_color = Color(0.658221, 0.771418, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6b8p"]
+font_size = 30
+
 [node name="PlayerChar" type="Node2D"]
 script = ExtResource("1_w0h5i")
 stat = SubResource("Resource_eoydj")
+meter_to_pixels = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 50
 position = Vector2(0, -59)
 sprite_frames = SubResource("SpriteFrames_cw4q3")
 animation = &"main_atk"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -200)
+
+[node name="HpText" type="Label" parent="Camera2D"]
+offset_left = -640.0
+offset_top = -357.0
+offset_right = -429.0
+offset_bottom = -264.0
+text = "0/0 HP"
+label_settings = SubResource("LabelSettings_dvowd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveSpdText" type="Label" parent="Camera2D"]
+offset_left = -640.0
+offset_top = -253.0
+offset_right = -429.0
+offset_bottom = -160.0
+text = "0/0 Speed"
+label_settings = SubResource("LabelSettings_wasq7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoveredDistanceText" type="Label" parent="Camera2D"]
+offset_left = -423.0
+offset_top = -358.0
+offset_right = -212.0
+offset_bottom = -265.0
+text = "0 Meters"
+label_settings = SubResource("LabelSettings_y6b8p")
+horizontal_alignment = 1
+vertical_alignment = 1
