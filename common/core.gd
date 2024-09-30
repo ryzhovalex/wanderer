@@ -24,8 +24,8 @@ func is_cooldown(
 func percent(current_val: float, max_val: float) -> float:
     return current_val / max_val
 
-func get_mouse_pos() -> Vector2:
+func get_viewport_mouse_pos() -> Vector2:
     return get_viewport().get_mouse_position()
 
-func group_members(group: StringName) -> Array[Node]:
+func get_group_members(group: StringName) -> Array[Node]:
     return get_tree().get_nodes_in_group(group)

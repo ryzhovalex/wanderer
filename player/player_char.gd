@@ -106,12 +106,12 @@ func _maybe_atk(_delta: float):
 
         # Attack direction is determined by cursor position relative to
         # character
-        var mouse_dir: Vector2 = (core.get_mouse_pos() - position).normalized()
+        var mouse_dir: Vector2 = (get_global_mouse_position() - position).normalized()
         var forward_dir = Vector2(1, 0)
         var dot = forward_dir.dot(mouse_dir)
         _sprite.flip_h = dot < 0
 
-        var mobs = core.group_members("mob")
+        var mobs = core.get_group_members("mob")
         var dmg_closest: int = stat.main_atk_dmg
         var dmg_other: int = floor(
             stat.main_atk_dmg * stat.main_atk_aoe_dmg_reduction_percent
@@ -142,7 +142,7 @@ func _maybe_atk(_delta: float):
         circle_atk_last_time = core.time()
         _sprite.play("circle_atk")
 
-        var mobs = core.group_members("mob")
+        var mobs = core.get_group_members("mob")
         var right_pos_range = position.x + stat.circle_atk_range
         var left_pos_range = position.x - stat.circle_atk_range
         var dmg = stat.circle_atk_dmg
