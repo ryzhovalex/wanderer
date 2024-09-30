@@ -51,6 +51,14 @@ func _maybe_atk(_delta: float):
             return
         state = State.MainAtk
         main_atk_last_time = core.time()
+        _sprite.play("main_atk")
+        return
+    if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+        if core.is_cooldown(circle_atk_last_time, stat.circle_atk_cooldown):
+            return
+        state = State.CircleAtk
+        circle_atk_last_time = core.time()
+        _sprite.play("circle_atk")
 
 func _maybe_move(delta: float):
     var dir = 0
@@ -58,10 +66,11 @@ func _maybe_move(delta: float):
         dir = -1
     elif Input.is_key_pressed(KEY_D):
         dir = 1
-    if dir == 0:
-        _sprite.play("idle")
-    else:
-        _sprite.play("move")
+    if state == State.Std:
+        if dir == 0:
+            _sprite.play("idle")
+        else:
+            _sprite.play("move")
     position.x += delta * 100 * dir
     if position.x < DistanceSv.player_char_starting_x:
         position.x = DistanceSv.player_char_starting_x
