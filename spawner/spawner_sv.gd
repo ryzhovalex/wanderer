@@ -9,14 +9,14 @@ extends Sv
 var last_spawned: int = 0
 
 func init():
+    print("init ", spawned_scene)
     last_spawned = 0
 
 func _process(_delta):
-    if core.is_cooldown(last_spawned, period):
+    if !core.is_cooldown(last_spawned, period):
         last_spawned = core.time()
         var chosen_stat: MobStat = spawned_rnd_stats.pick_random()
         if chosen_stat == null:
-            printerr("No content in `spawned_rnd_stats` array")
             return
         var chosen: Mob = spawned_scene.instantiate()
         chosen.stat = chosen_stat

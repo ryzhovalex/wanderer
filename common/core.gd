@@ -7,6 +7,9 @@ func find(t: String = ".") -> Node:
 func time() -> int:
     return Time.get_ticks_msec()
 
+func utc() -> int:
+    return floor(Time.get_unix_time_from_system() * 1000)
+
 func is_cooldown(
     last: int, cooldown: int, unlock_starters: bool = true
 ) -> bool:
