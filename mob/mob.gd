@@ -45,7 +45,6 @@ func _process(delta):
 	if _is_in_atk_range() && !is_moving_backward:
 		# Wait&Stare if atk is recharging, but player within the range
 		if _state != State.Idle && _state != State.StartedAtk && _is_atk_on_cooldown():
-			print_debug("idle")
 			_state = State.Idle
 			_sprite.play("idle")
 			return
@@ -63,7 +62,6 @@ func _is_atk_on_cooldown():
 	return core.current_ms() - last_atk_time_ms < stat.atk_cooldown_ms
 
 func _on_anim_finished():
-	print_debug("finish anim while %d" % _state)
 	match _state:
 		State.StartedAtk:
 			if _is_in_atk_range():
@@ -83,7 +81,6 @@ func _is_in_atk_range() -> bool:
 func _atk():
 	if _state == State.StartedAtk || _is_atk_on_cooldown():
 		return
-	print_debug("atk")
 	# Register an attack once animation starts, not on animation finish
 	last_atk_time_ms = core.current_ms()
 	_state = State.StartedAtk
