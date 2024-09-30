@@ -1,8 +1,17 @@
 extends Node
 
+func get_current_scene() -> Node:
+    return get_tree().get_current_scene()
+
 # Fetches node relative to scene
 func find(t: String = ".") -> Node:
     return get_tree().get_current_scene().get_node(t)
+
+func find_by_class(node: Node, clsname: String, r: Array):
+    if node.is_class(clsname):
+        r.push_back(node)
+    for child in node.get_children():
+        find_by_class(child, clsname, r)
 
 func time() -> int:
     return Time.get_ticks_msec()
@@ -18,12 +27,8 @@ func is_cooldown(
         return false
     return time() - last <= cooldown
 
-func percent(current_val: int, max_val: int) -> int:
-    var f: float = float(current_val) / max_val
-    f *= 100
-    if f > 100:
-        f = 100
-    return floor(f)
+func percent(current_val: float, max_val: float) -> float:
+    return current_val / max_val
 
 func get_mouse_pos() -> Vector2:
     return get_viewport().get_mouse_position()

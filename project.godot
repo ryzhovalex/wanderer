@@ -18,11 +18,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 DistanceSv="*res://distance/distance_sv.tscn"
-GroundSv="*res://ground/ground_sv.tscn"
 SpawnerSv="*res://spawner/spawner_sv.tscn"
+GroundSv="*res://ground/ground_sv.tscn"
 PlayerSv="*res://player/player_sv.tscn"
 core="*res://common/core.gd"
 GameSv="*res://game/game_sv.gd"
+Rnd="*res://common/rnd.gd"
 
 [display]
 

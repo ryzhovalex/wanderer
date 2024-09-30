@@ -59,12 +59,44 @@ func _maybe_atk(_delta: float):
         state = State.MainAtk
         main_atk_last_time = core.time()
         _sprite.play("main_atk")
+
         # Attack direction is determined by cursor position relative to
         # character
         var mouse_dir: Vector2 = (core.get_mouse_pos() - position).normalized()
         var forward_dir = Vector2(1, 0)
         var dot = forward_dir.dot(mouse_dir)
         _sprite.flip_h = dot < 0
+
+        var mobs: Array[Mob] = []
+        core.find_by_class(core.get_current_scene(), "Mob", mobs)
+
+        # Instead raycasting, check what's in close proximity by just
+        # coordinates
+        if dot >= 0:
+            # Check X+
+            var pos_range = position.x + stat.main_atk_range
+            var in_range_mobs: Array[Mob] = []
+            var closest_mob: Mob = null
+            var dmg_closest: int = stat.main_atk_dmg
+            var dmg_other: int = floor(
+                stat.main_atk_dmg * stat.main_atk_aoe_dmg_reduction_percent
+            )
+            # Crit works simultaneously for both main target and AOE
+            var is_crit = Rnd.chance(stat.main_atk_crit_chance)
+            if is_crit:
+                dmg_closest = floor(dmg_closest * stat.main_atk_crit_mul)
+                dmg_other = floor(dmg_other * stat.main_atk_crit_mul)
+
+            for mob in mobs:
+                if position.x < mob.position.x && mob.position.x < pos_range:
+                    in_range_mobs.push_back(mob)
+                    if closest_mob == null \
+                            || mob.position.x < closest_mob.position.x:
+                        closest_mob = mob
+        else:
+            # Check X-
+            var range = position.x - stat.main_atk_range
+
         return
     if Input.is_action_just_pressed("circle_atk") \
             && !core.is_cooldown(

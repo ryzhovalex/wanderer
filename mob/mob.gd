@@ -105,3 +105,6 @@ func _move(delta: float):
         _move_backward_player_char(delta)
         return
     _move_toward_player_char(delta)
+
+func recv_dmg(dmg: int):
+    stat.hp -= dmg
