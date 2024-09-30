@@ -68,17 +68,26 @@ func _maybe_atk(_delta: float):
         _sprite.flip_h = dot < 0
 
         var mobs = core.group_members("mobs")
+        var dmg_closest: int = stat.main_atk_dmg
+        var dmg_other: int = floor(
+            stat.main_atk_dmg * stat.main_atk_aoe_dmg_reduction_percent
+        )
+        # Crit works simultaneously for both main target and AOE
+        var is_crit = Rnd.chance(stat.main_atk_crit_chance)
+        if is_crit:
+            dmg_closest = floor(dmg_closest * stat.main_atk_crit_mul)
+            dmg_other = floor(dmg_other * stat.main_atk_crit_mul)
 
         # Instead raycasting, check what's in close proximity by just
         # coordinates
         if dot >= 0:
             # Check X+
             var pos_range = position.x + stat.main_atk_range
-            _dmg_mobs_in_range(pos_range, mobs, "right")
+            _dmg_mobs_in_range(pos_range, dmg_closest, dmg_other, mobs, "right")
         else:
             # Check X-
             var pos_range = position.x - stat.main_atk_range
-            _dmg_mobs_in_range(pos_range, mobs, "left")
+            _dmg_mobs_in_range(pos_range, dmg_closest, dmg_other, mobs, "left")
 
         return
     if Input.is_action_just_pressed("circle_atk") \
@@ -89,22 +98,26 @@ func _maybe_atk(_delta: float):
         circle_atk_last_time = core.time()
         _sprite.play("circle_atk")
 
+        var mobs = core.group_members("mobs")
+        var right_pos_range = position.x + stat.circle_atk_range
+        var left_pos_range = position.x - stat.circle_atk_range
+        var dmg = stat.circle_atk_dmg
+        var is_crit = Rnd.chance(stat.circle_atk_crit_chance)
+        if is_crit:
+            dmg = floor(dmg * stat.circle_atk_crit_mul)
+        # Same dmg for closest and other mobs
+        _dmg_mobs_in_range(right_pos_range, dmg, dmg, mobs, "right")
+        _dmg_mobs_in_range(left_pos_range, dmg, dmg, mobs, "left")
+
 func _dmg_mobs_in_range(
     pos_range: int,
+    dmg_closest: int,
+    dmg_other: int,
     all_mobs: Array[Node],
     check: StringName
 ):
     var in_range_mobs: Array[Mob] = []
     var closest_mob: Mob = null
-    var dmg_closest: int = stat.main_atk_dmg
-    var dmg_other: int = floor(
-        stat.main_atk_dmg * stat.main_atk_aoe_dmg_reduction_percent
-    )
-    # Crit works simultaneously for both main target and AOE
-    var is_crit = Rnd.chance(stat.main_atk_crit_chance)
-    if is_crit:
-        dmg_closest = floor(dmg_closest * stat.main_atk_crit_mul)
-        dmg_other = floor(dmg_other * stat.main_atk_crit_mul)
 
     for mob in all_mobs:
         if (check == "right" && position.x < mob.position.x && mob.position.x < pos_range) \
