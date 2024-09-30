@@ -23,6 +23,7 @@ var last_dmg_per_sec_time: int = 0
 @onready var hp_text: Label = $Camera2D.get_node("HpText")
 @onready var move_spd_text: Label = $Camera2D.get_node("MoveSpdText")
 @onready var covered_distance_text = $Camera2D.get_node("CoveredDistanceText")
+@onready var cam = $Camera2D
 
 # How many pixels in 1 meter
 @export var meter_to_pixels: float = 1
@@ -49,6 +50,7 @@ func _ready():
     position.y = GroundSv.base_y
     _sprite.connect("animation_finished", _on_anim_finished)
     starting_x = position.x
+    cam.add_to_group("cam")
 
 func _on_anim_finished():
     match state:
@@ -109,7 +111,7 @@ func _maybe_atk(_delta: float):
         var dot = forward_dir.dot(mouse_dir)
         _sprite.flip_h = dot < 0
 
-        var mobs = core.group_members("mobs")
+        var mobs = core.group_members("mob")
         var dmg_closest: int = stat.main_atk_dmg
         var dmg_other: int = floor(
             stat.main_atk_dmg * stat.main_atk_aoe_dmg_reduction_percent
@@ -140,7 +142,7 @@ func _maybe_atk(_delta: float):
         circle_atk_last_time = core.time()
         _sprite.play("circle_atk")
 
-        var mobs = core.group_members("mobs")
+        var mobs = core.group_members("mob")
         var right_pos_range = position.x + stat.circle_atk_range
         var left_pos_range = position.x - stat.circle_atk_range
         var dmg = stat.circle_atk_dmg

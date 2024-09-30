@@ -20,7 +20,9 @@ func _process(_delta):
         var chosen: Mob = spawned_scene.instantiate()
         chosen.stat = chosen_stat
 
-        var visible_rect := get_viewport().get_visible_rect()
+        var cam: Camera2D = get_tree().get_first_node_in_group("cam")
+        var visible_rect = cam.
+        print(visible_rect)
         # Spawn a little bit offscreen
         var spawn_offset_x_from_visible_rect_center: int = \
             floor(visible_rect.size.x * spawn_offset_x_mul)

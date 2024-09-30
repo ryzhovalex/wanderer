@@ -22,7 +22,7 @@ func _ready():
         stat.closest_range <= stat.atk_range,
         "Idle range must be less than attack range"
     )
-    add_to_group("mobs")
+    add_to_group("mob")
 
 func _process(delta):
     if _state == State.Die:
