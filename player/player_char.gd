@@ -74,11 +74,11 @@ func _maybe_atk(_delta: float):
         if dot >= 0:
             # Check X+
             var pos_range = position.x + stat.main_atk_range
-            _dmg_mobs_in_range(pos_range, mobs)
+            _dmg_mobs_in_range(pos_range, mobs, "right")
         else:
             # Check X-
             var pos_range = position.x - stat.main_atk_range
-            _dmg_mobs_in_range(pos_range, mobs)
+            _dmg_mobs_in_range(pos_range, mobs, "left")
 
         return
     if Input.is_action_just_pressed("circle_atk") \
@@ -91,7 +91,8 @@ func _maybe_atk(_delta: float):
 
 func _dmg_mobs_in_range(
     pos_range: int,
-    all_mobs: Array[Node]
+    all_mobs: Array[Node],
+    check: StringName
 ):
     var in_range_mobs: Array[Mob] = []
     var closest_mob: Mob = null
@@ -106,7 +107,8 @@ func _dmg_mobs_in_range(
         dmg_other = floor(dmg_other * stat.main_atk_crit_mul)
 
     for mob in all_mobs:
-        if position.x < mob.position.x && mob.position.x < pos_range:
+        if (check == "right" && position.x < mob.position.x && mob.position.x < pos_range) \
+            || (check == "left" && pos_range < mob.position.x && mob.position.x < position.x):
             in_range_mobs.push_back(mob)
             if closest_mob == null \
                     || mob.position.x < closest_mob.position.x:
