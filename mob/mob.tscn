@@ -233,10 +233,11 @@ stat = SubResource("Resource_rwbdh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -28)
-scale = Vector2(2, 2)
+position = Vector2(0, -42)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ge5bk")
-animation = &"atk"
+animation = &"idle"
+frame_progress = 0.214311
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21)

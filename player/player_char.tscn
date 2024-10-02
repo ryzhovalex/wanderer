@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bsg10sq6rfv1l"]
+[gd_scene load_steps=49 format=3 uid="uid://bsg10sq6rfv1l"]
 
 [ext_resource type="Script" path="res://player/player_char.gd" id="1_w0h5i"]
 [ext_resource type="Script" path="res://player/player_char_stat.gd" id="2_ygryo"]
@@ -11,6 +11,8 @@
 [ext_resource type="FontFile" uid="uid://b2l8nw2ad304g" path="res://art/fredoka_semibold.ttf" id="9_i5inc"]
 [ext_resource type="Texture2D" uid="uid://d0f7yfentbq3s" path="res://art/heart.png" id="9_ngljn"]
 [ext_resource type="Texture2D" uid="uid://cot2p0h8qgup7" path="res://art/boots_01a.png" id="11_l6klv"]
+[ext_resource type="Texture2D" uid="uid://cj2x7xw4qf8io" path="res://art/sword_03c.png" id="12_d2pn0"]
+[ext_resource type="Script" path="res://player/circle_atk_bar.gd" id="13_m1mgo"]
 
 [sub_resource type="Resource" id="Resource_eoydj"]
 script = ExtResource("2_ygryo")
@@ -282,61 +284,91 @@ font_size = 30
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kajnd"]
+bg_color = Color(0, 0, 0, 0.215686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2c0f"]
+bg_color = Color(0.280709, 0.706326, 0.248867, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="LabelSettings" id="LabelSettings_y6b8p"]
 font = ExtResource("9_i5inc")
 font_size = 30
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
-[node name="PlayerChar" type="Node2D"]
+[node name="PlayerChar" type="Node2D" groups=["@Player"]]
 script = ExtResource("1_w0h5i")
 stat = SubResource("Resource_eoydj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 50
 texture_filter = 1
-position = Vector2(0, -30)
-scale = Vector2(2, 2)
+position = Vector2(0, -45)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_cw4q3")
-animation = &"move"
-frame_progress = 0.316606
+animation = &"idle"
+frame_progress = 0.412469
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -200)
+position = Vector2(0, -163)
 
 [node name="Heart" type="Sprite2D" parent="Camera2D"]
 texture_filter = 1
-position = Vector2(-354, -152)
+position = Vector2(-354, -173)
 scale = Vector2(3, 3)
 texture = ExtResource("9_ngljn")
 
 [node name="HpText" type="Label" parent="Camera2D"]
 offset_left = -320.0
-offset_top = -177.0
+offset_top = -198.0
 offset_right = -175.0
-offset_bottom = -127.0
+offset_bottom = -148.0
 label_settings = SubResource("LabelSettings_dvowd")
 vertical_alignment = 1
 
 [node name="Shoe" type="Sprite2D" parent="Camera2D"]
 texture_filter = 1
-position = Vector2(-354, -93)
+position = Vector2(-354, -114)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_l6klv")
 
 [node name="MoveSpdText" type="Label" parent="Camera2D"]
 offset_left = -320.0
-offset_top = -118.0
+offset_top = -139.0
 offset_right = -175.0
-offset_bottom = -68.0
+offset_bottom = -89.0
 label_settings = SubResource("LabelSettings_dvowd")
 vertical_alignment = 1
 
+[node name="Sword" type="Sprite2D" parent="Camera2D"]
+texture_filter = 1
+position = Vector2(-354, -55)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_d2pn0")
+
+[node name="CircleAtkBar" type="ProgressBar" parent="Camera2D"]
+unique_name_in_owner = true
+offset_left = -316.0
+offset_top = -83.0
+offset_right = -273.0
+offset_bottom = -28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kajnd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j2c0f")
+max_value = 1.0
+value = 1.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("13_m1mgo")
+
 [node name="CoveredDistanceText" type="Label" parent="Camera2D"]
 offset_left = -102.0
-offset_top = -218.0
+offset_top = -234.0
 offset_right = 98.0
-offset_bottom = -168.0
+offset_bottom = -184.0
 text = "0 meters"
 label_settings = SubResource("LabelSettings_y6b8p")
 horizontal_alignment = 1

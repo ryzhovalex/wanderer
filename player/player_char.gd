@@ -59,10 +59,6 @@ func _on_anim_finished():
 		State.CircleAtk:
 			state = State.Std
 
-func _draw():
-	# Test ground-like line
-	draw_line(Vector2(-100000, 0.0), Vector2(100000, 0.0), Color.BLACK)
-
 func _dmg_per_sec():
 	# We don't want this damage to be applied before the first second
 	if !core.is_cooldown(last_dmg_per_sec_time, 1000, false):
