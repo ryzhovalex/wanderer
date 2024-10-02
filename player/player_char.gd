@@ -70,8 +70,8 @@ func _dmg_per_sec():
 		stat.hp -= stat.hp_dmg_per_sec
 
 func _display():
-	hp_text.text = "%d/%d HP" % [stat.hp, stat.max_hp]
-	move_spd_text.text = "%d/%d Speed" % [real_move_spd, stat.move_spd]
+	hp_text.text = "%d/%d" % [stat.hp, stat.max_hp]
+	move_spd_text.text = "%d/%d" % [real_move_spd, stat.move_spd]
 	covered_distance_text.text = \
 		"%d meters" % _get_covered_distance_as_meters()
 

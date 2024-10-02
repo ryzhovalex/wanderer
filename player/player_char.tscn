@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bsg10sq6rfv1l"]
+[gd_scene load_steps=45 format=3 uid="uid://bsg10sq6rfv1l"]
 
 [ext_resource type="Script" path="res://player/player_char.gd" id="1_w0h5i"]
 [ext_resource type="Script" path="res://player/player_char_stat.gd" id="2_ygryo"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://fctgn8bgmmca" path="res://player/Attack (78x58).png" id="6_5lijc"]
 [ext_resource type="Texture2D" uid="uid://cpogr13n37u6j" path="res://player/Run (78x58).png" id="7_wb04k"]
 [ext_resource type="Texture2D" uid="uid://m8y6ygb414dw" path="res://art/player_rage.png" id="8_nk251"]
+[ext_resource type="FontFile" uid="uid://b2l8nw2ad304g" path="res://art/fredoka_semibold.ttf" id="9_i5inc"]
+[ext_resource type="Texture2D" uid="uid://d0f7yfentbq3s" path="res://art/heart.png" id="9_ngljn"]
+[ext_resource type="Texture2D" uid="uid://cot2p0h8qgup7" path="res://art/boots_01a.png" id="11_l6klv"]
 
 [sub_resource type="Resource" id="Resource_eoydj"]
 script = ExtResource("2_ygryo")
@@ -274,15 +277,16 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dvowd"]
+font = ExtResource("9_i5inc")
 font_size = 30
-font_color = Color(1, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_wasq7"]
-font_size = 30
-font_color = Color(0.658221, 0.771418, 1, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_y6b8p"]
+font = ExtResource("9_i5inc")
 font_size = 30
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="PlayerChar" type="Node2D"]
 script = ExtResource("1_w0h5i")
@@ -300,32 +304,40 @@ frame_progress = 0.316606
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -200)
 
+[node name="Heart" type="Sprite2D" parent="Camera2D"]
+texture_filter = 1
+position = Vector2(-354, -152)
+scale = Vector2(3, 3)
+texture = ExtResource("9_ngljn")
+
 [node name="HpText" type="Label" parent="Camera2D"]
-offset_left = -640.0
-offset_top = -357.0
-offset_right = -429.0
-offset_bottom = -264.0
-text = "0/0 HP"
+offset_left = -320.0
+offset_top = -177.0
+offset_right = -175.0
+offset_bottom = -127.0
 label_settings = SubResource("LabelSettings_dvowd")
-horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Shoe" type="Sprite2D" parent="Camera2D"]
+texture_filter = 1
+position = Vector2(-354, -93)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_l6klv")
+
 [node name="MoveSpdText" type="Label" parent="Camera2D"]
-offset_left = -605.0
-offset_top = -250.0
-offset_right = -267.0
-offset_bottom = -157.0
-text = "0/0 Speed"
-label_settings = SubResource("LabelSettings_wasq7")
-horizontal_alignment = 1
+offset_left = -320.0
+offset_top = -118.0
+offset_right = -175.0
+offset_bottom = -68.0
+label_settings = SubResource("LabelSettings_dvowd")
 vertical_alignment = 1
 
 [node name="CoveredDistanceText" type="Label" parent="Camera2D"]
-offset_left = -423.0
-offset_top = -358.0
-offset_right = -212.0
-offset_bottom = -265.0
-text = "0 Meters"
+offset_left = -102.0
+offset_top = -218.0
+offset_right = 98.0
+offset_bottom = -168.0
+text = "0 meters"
 label_settings = SubResource("LabelSettings_y6b8p")
 horizontal_alignment = 1
 vertical_alignment = 1
