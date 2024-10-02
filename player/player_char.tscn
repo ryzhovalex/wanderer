@@ -14,7 +14,7 @@ script = ExtResource("2_ygryo")
 max_hp = 500.0
 hp = 500.0
 hp_dmg_per_sec = 1.0
-move_spd = 200.0
+move_spd = 100.0
 move_spd_reduce_per_missing_hp_percent = 0.002
 main_atk_dmg = 50
 main_atk_range = 250.0
@@ -295,7 +295,7 @@ position = Vector2(0, -30)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cw4q3")
 animation = &"move"
-frame_progress = 0.293737
+frame_progress = 0.316606
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -200)
